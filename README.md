@@ -1,6 +1,6 @@
 # Playwright E2E Automation Portfolio Project
 
-[![Playwright E2E Tests](https://github.com/MilJav11/qa-automation-annea/actions/workflows/tests.yml/badge.svg)](https://github.com/MilJav11/qa-automation-annea/actions/workflows/tests.yml)
+[![Playwright E2E Tests](https://github.com/MilJav11/playwright-python-e2e-framework/actions/workflows/tests.yml/badge.svg)](https://github.com/MilJav11/playwright-python-e2e-framework/actions/workflows/tests.yml)
 
 Professional E2E test suite automating the Seznam.cz email workflow using Playwright and Python.
 
@@ -35,10 +35,13 @@ As an E2E UI automation suite, coverage is focused on **Functional Business Flow
 ├── .github/workflows/      # CI/CD pipeline definition
 ├── pages/                  # Page Object Model classes
 ├── tests/
+│   ├── features/           # Gherkin scenario (email_workflow.feature)
 │   ├── step_definitions/   # Python code executing the BDD steps
-│   ├── email_workflow.feature # Gherkin scenario
 │   └── conftest.py         # Playwright fixtures and setup
+├── .env.example            # Template for environment variables
+├── pytest.ini              # Pytest configuration
 ├── requirements.txt        # Python dependencies
+├── test_attachment.txt     # Sample attachment used by the tests
 └── README.md
 ```
 
@@ -54,11 +57,11 @@ As an E2E UI automation suite, coverage is focused on **Functional Business Flow
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/MilJav11/qa-automation-annea.git
-cd qa-automation-annea
+git clone https://github.com/MilJav11/playwright-python-e2e-framework.git
+cd playwright-python-e2e-framework
 ```
 
-2. Create a `.env` file in the root directory and add your credentials:
+2. Configuration: copy `.env.example` to `.env` in the root directory and fill in your credentials. Use a dedicated Seznam TEST account for this purpose. Never commit your `.env` file — it is git-ignored. In CI/CD, `TEST_EMAIL` and `TEST_PASSWORD` are read from repository secrets.
 
 ```
 TEST_EMAIL=your_test_email@seznam.cz
