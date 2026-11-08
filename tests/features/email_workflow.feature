@@ -1,6 +1,6 @@
 Feature: Email Client Workflows
 
-  @level3 @smoke
+  @level3 @smoke @live
   Scenario: Send an email with an attachment to a saved contact
     Given the user is logged into their email account
     When the user composes a new email for a contact from the list

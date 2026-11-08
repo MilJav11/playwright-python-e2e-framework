@@ -14,7 +14,7 @@ def log_in(login_page):
 
 @when("the user composes a new email for a contact from the list")
 def compose_email(mail_page):
-    mail_page.compose_email_to("annea.test.milos@seznam.cz")
+    mail_page.compose_email_to(os.getenv("TEST_EMAIL"))
 
 @when("the user attaches a document to the email")
 def attach_document(mail_page):
