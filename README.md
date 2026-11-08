@@ -9,7 +9,7 @@ Professional E2E test suite automating the Seznam.cz email workflow using Playwr
 This test suite covers the critical business path (Happy Path) of sending an email via the Seznam.cz web client:
 
 1. Successfully log into a Seznam.cz email account (handling dynamic cookie/ad banners).
-2. Navigate directly to the mailbox and initialize a new email to a predefined contact.
+2. Navigate directly to the mailbox and initialize a new email to a contact configured via `TEST_EMAIL`.
 3. Dynamically generate and attach a local text document (`test_attachment.txt`).
 4. Send the email and explicitly wait for the UI notification verifying successful delivery.
 5. Safely log out of the account via the profile menu.
@@ -50,7 +50,6 @@ As an E2E UI automation suite, coverage is focused on **Functional Business Flow
 ### Prerequisites
 
 - Python 3.10+
-- Node.js (for Playwright binaries)
 
 ### Installation
 
