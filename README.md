@@ -1,6 +1,6 @@
 # Playwright E2E Automation Portfolio Project
 
-[![Playwright E2E Tests](https://github.com/MilJav11/playwright-python-e2e-framework/actions/workflows/tests.yml/badge.svg)](https://github.com/MilJav11/playwright-python-e2e-framework/actions/workflows/tests.yml)
+[![Demo Tests](https://github.com/MilJav11/playwright-python-e2e-framework/actions/workflows/demo-tests.yml/badge.svg)](https://github.com/MilJav11/playwright-python-e2e-framework/actions/workflows/demo-tests.yml)
 
 Professional E2E test suite automating the Seznam.cz email workflow using Playwright and Python.
 
@@ -32,11 +32,13 @@ As an E2E UI automation suite, coverage is focused on **Functional Business Flow
 ## 📁 Project Structure
 
 ```text
-├── .github/workflows/      # CI/CD pipeline definition
-├── pages/                  # Page Object Model classes
+├── .github/workflows/
+│   ├── demo-tests.yml      # Gating CI: credential-free demo suite
+│   └── tests.yml           # Manual live Seznam suite (workflow_dispatch)
+├── pages/                  # Page Object Model classes (Seznam + the-internet demo)
 ├── tests/
-│   ├── features/           # Gherkin scenario (email_workflow.feature)
-│   ├── step_definitions/   # Python code executing the BDD steps
+│   ├── features/           # Gherkin: email_workflow.feature (@live), demo_the_internet.feature (@demo)
+│   ├── step_definitions/   # BDD steps: test_email_steps.py, test_demo_steps.py
 │   └── conftest.py         # Playwright fixtures and setup
 ├── .env.example            # Template for environment variables
 ├── pytest.ini              # Pytest configuration
@@ -79,10 +81,18 @@ pip install -r requirements.txt
 playwright install chromium
 ```
 
-### Running Tests
+### Demo suite (no account needed)
 
-Execute the test suite using pytest:
+Runs against the public automation site https://the-internet.herokuapp.com (login, invalid password, file upload, logout). No credentials or `.env` required. This is the suite that gates CI.
 
 ```bash
-pytest
+pytest -m demo -v
+```
+
+### Live Seznam suite
+
+The Seznam email scenario (`@live`) needs a dedicated test account (`TEST_EMAIL` / `TEST_PASSWORD`). It is run manually (GitHub Actions `workflow_dispatch`, or locally) because the third-party Seznam UI changes and can break the test independently of this code.
+
+```bash
+pytest -m live -v
 ```
